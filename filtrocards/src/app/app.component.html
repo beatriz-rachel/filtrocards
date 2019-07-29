@@ -4,23 +4,20 @@
 <div class="row">
   <div class="col-md-12">
 
-    <form [formGroup]="frmBusca">
-        <div class="modal-body" id="area-busca">
+    <form [formGroup]="frmSearch">
+        <div class="modal-body" id="area-frmSearch">
 
             <div class="row" style="overflow-x: auto">
                 <div class="col-xs-12">
-                  <div class="form-group animated fadeInLeft">
-                      <label class="input">
-                          <b>Busca: </b>
-                      </label>
-                      <div class="valorPremio">
-                        <input type="text" class="form-control" formControlName="filtro">
-                      </div>
-                  </div>
-                  
-                  <button type="button" class="btn btn-primary" (click)="teste()" >
-                      Baixar
-                  </button>
+                  <fieldset class="search-wrapper">
+                    <div class="filter">
+                      <input type="text" class="form-control search-field" formControlName="filter" placeholder="DIGITE">
+                    </div>
+                    
+                    <button type="button" class="btn search-btn" (click)="teste()" >
+                        Buscar
+                    </button>
+                  </fieldset>
                   
                 </div>
             </div>

@@ -9,15 +9,15 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class AppComponent implements OnInit {
   title = 'filtrocards';
 
-  public frmBusca: FormGroup;
+  public frmSearch: FormGroup;
 
   constructor(
     private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
-    this.frmBusca = this.fb.group({
-      filtro: this.fb.control(''),
+    this.frmSearch = this.fb.group({
+      filter: this.fb.control(''),
     });
   }
 
