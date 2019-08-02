@@ -1,3 +1,10 @@
+h1 {
+    text-align:center;
+    color:#fff;
+    margin-bottom: 250px;
+}
+
+/**Search field**/
 .search-wrapper {
     position: relative;
 }
@@ -20,4 +27,79 @@
     padding: 0;
     border-radius: 0;
     margin: 0;
+}
+
+/**Accordion**/
+.search-result{
+    margin-top:210px;
+}
+
+.search-title{
+    font-size: 14px;
+    color: #949494;
+    font-weight: bold;
+}
+
+/deep/ .panel-group .panel{
+    border: 1px solid #e7e7e7;
+    border-radius: 2px;
+}
+
+/deep/ .card{
+    border: 0!important;
+}
+
+/deep/ .panel-default>.panel-heading {
+    background:#fff;
+}
+
+/deep/ .panel-heading .btn-link {
+    color: #233647;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/deep/ .panel-default>.panel-heading+.panel-collapse>.panel-body {
+    color:#626262;
+    padding:30px;
+}
+@media screen and (max-width: 1400px) {
+    h1 {
+        margin-bottom: 180px;
+    }
+    .search-result {
+        margin-top: 150px;
+    }
+}
+@media screen and (max-width: 1124px) {
+    h1 {
+        margin-bottom: 100px;
+    }
+    .search-result {
+        margin-top: 100px;
+    }
+}
+@media screen and (max-width: 860px) {
+    h1 {
+        margin-bottom: 60px;
+    }
+    .search-result {
+        margin-top: 60px;
+    }
+}
+@media screen and (max-width: 700px) {
+    h1 {
+        margin-bottom: 30px;
+    }
+    .search-result {
+        margin-top: 30px;
+    }
+}
+@media screen and (max-width: 560px) {
+    h1 {
+        margin-bottom: 0;
+    }
+    
+}
+@media screen and (max-width: 480px) {
 }

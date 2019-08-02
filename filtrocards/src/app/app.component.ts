@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { SearchContentService } from './services/search-content.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SearchContent } from './domain/search-content';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   public sub: any;
-  title = 'filtrocards';
+  title = 'filtrocards';  
+  public list: SearchContent[] = [];
 
   public frmSearch: FormGroup;
 
@@ -37,7 +40,20 @@ export class AppComponent implements OnInit {
           .obter()
           .subscribe(response => {
             console.log(response);
+            this.toModel(response);
           });
       });
+  }
+
+  public toModel(response: any): SearchContent[] {
+    response.forEach(element => {
+      let newElement = new SearchContent();
+      newElement.Id = element.Id;
+      newElement.Title = element.Title;
+      newElement.Description = element.Description;
+      this.list.push(newElement);
+    });
+
+    return this.list;
   }
 }

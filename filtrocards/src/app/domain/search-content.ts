@@ -1,4 +1,5 @@
 export class SearchContent {
     public Id: number;
-    public Text: string;
+    public Title: string;
+    public Description: string;
 }
