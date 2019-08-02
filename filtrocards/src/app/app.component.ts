@@ -67,16 +67,15 @@ export class AppComponent implements OnInit {
     this.list.forEach(element => {
       if (element.Title.indexOf(filter) !== -1 || element.Description.indexOf(filter) !== -1) {
         element.Show = true;
-        this.listFiltered.push(element);
-        console.log(this.listFiltered);
       } else {
         element.Show = false;
-        this.listFiltered.push(element);
-        console.log(this.listFiltered);
       }
+      this.listFiltered.push(element);
+      console.log(element);
     });
 
-    // console.log(this.listFiltered.filter(x => x.Show = true));
+    console.log(this.list);
+    // console.log(this.listFiltered);
   }
 
   public getListFiltered(): SearchContent[] {
