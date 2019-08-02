@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   public sub: any;
   title = 'filtrocards';  
   public list: SearchContent[] = [];
+  public listFiltered: SearchContent[] = [];
 
   public frmSearch: FormGroup;
 
@@ -39,13 +40,18 @@ export class AppComponent implements OnInit {
         this.searchContentService
           .obter()
           .subscribe(response => {
-            console.log(response);
+            this.list.length = 0;
+            this.listFiltered.length = 0;
+
             this.toModel(response);
+
+            this.filter(filter);
+            
           });
       });
   }
 
-  public toModel(response: any): SearchContent[] {
+  public toModel(response: any): void {
     response.forEach(element => {
       let newElement = new SearchContent();
       newElement.Id = element.Id;
@@ -53,7 +59,27 @@ export class AppComponent implements OnInit {
       newElement.Description = element.Description;
       this.list.push(newElement);
     });
+  }
 
-    return this.list;
+  public filter(filter: string): void {
+    filter = filter.trim();
+
+    this.list.forEach(element => {
+      if (element.Title.indexOf(filter) !== -1 || element.Description.indexOf(filter) !== -1) {
+        element.Show = true;
+        this.listFiltered.push(element);
+        console.log(this.listFiltered);
+      } else {
+        element.Show = false;
+        this.listFiltered.push(element);
+        console.log(this.listFiltered);
+      }
+    });
+
+    // console.log(this.listFiltered.filter(x => x.Show = true));
+  }
+
+  public getListFiltered(): SearchContent[] {
+    return this.listFiltered.filter(x => x.Show = true);
   }
 }

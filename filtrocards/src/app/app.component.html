@@ -33,7 +33,7 @@
 
       <div class="col-xs-12">
         <accordion [isAnimated]="true" [closeOthers]="true">
-          <accordion-group *ngFor="let object of list" heading="{{object.Title}}">
+          <accordion-group *ngFor="let object of getListFiltered()" heading="{{object.Title}}">
             {{object.Description}}
           </accordion-group>
         </accordion>
