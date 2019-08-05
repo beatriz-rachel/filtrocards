@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { SearchContentService } from './services/search-content.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SearchContent } from './domain/search-content';
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { finalize } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
   title = 'filtrocards';  
   public list: SearchContent[] = [];
   public listFiltered: SearchContent[] = [];
+  public loading = false;
 
   public frmSearch: FormGroup;
 
@@ -37,16 +39,16 @@ export class AppComponent implements OnInit {
     console.log('filter: ' + filter);
 
     this.sub = this.activatedRoute.params.subscribe(params => {
+        this.loading = true;
         this.searchContentService
           .obter()
+          .pipe(finalize(() => { this.loading = false; }))
           .subscribe(response => {
             this.list.length = 0;
             this.listFiltered.length = 0;
 
             this.toModel(response);
-
             this.filter(filter);
-            
           });
       });
   }
@@ -62,23 +64,16 @@ export class AppComponent implements OnInit {
   }
 
   public filter(filter: string): void {
-    filter = filter.trim();
+    filter = filter.trim().toUpperCase();
 
     this.list.forEach(element => {
-      if (element.Title.indexOf(filter) !== -1 || element.Description.indexOf(filter) !== -1) {
-        element.Show = true;
-      } else {
-        element.Show = false;
+      if (element.Title.toUpperCase().indexOf(filter) !== -1 || element.Description.toUpperCase().indexOf(filter) !== -1) {
+        this.listFiltered.push(element);
       }
-      this.listFiltered.push(element);
-      console.log(element);
     });
-
-    console.log(this.list);
-    // console.log(this.listFiltered);
   }
 
   public getListFiltered(): SearchContent[] {
-    return this.listFiltered.filter(x => x.Show = true);
+    return this.listFiltered;
   }
 }

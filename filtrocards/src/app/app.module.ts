@@ -12,19 +12,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AccordionModule.forRoot(),
-    BrowserAnimationsModule
-  ],
-  providers: [HttpClientModule],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent
+   ],
+   imports: [
+      BrowserModule,
+      AppRoutingModule,
+      FormsModule,
+      ReactiveFormsModule,
+      HttpClientModule,
+      AccordionModule.forRoot(),
+      BrowserAnimationsModule
+   ],
+   providers: [
+      HttpClientModule
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule { }
